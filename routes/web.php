@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 
 
+
 Route::group(['prefix'=>'produtos', 'where'=>['id'=>'[0-9]+']], function() {
 
 
@@ -33,3 +34,27 @@ Route::group(['prefix'=>'produtos', 'where'=>['id'=>'[0-9]+']], function() {
     Route::put('{id}/update',['as'=>'produtos.update', 'uses'=>'ProdutosController@update']);
     
 });
+
+
+Route::get('auth/login', 'Auth\AuthController@getLogin');
+Route::post('auth/login', 'Auth\AuthController@postLogin');
+
+Route::get('secreto', ['middleware'=>'auth', function() {
+
+ return "Conteudo visivel apenas para usuários autenticados";
+
+}]);
+    
+
+
+Route::get('auth/login', function() {
+    if(Auth::attempt(['email'=> 'gfvieira@wtf.inf.br', 'password'=>1234])) {
+     return "logado!";
+}
+});
+
+Route::get('auth/logout', function() {
+ Auth::logout();
+
+});
+

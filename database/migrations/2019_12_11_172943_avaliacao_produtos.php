@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAvaliacaoProdutosTable extends Migration
+class AvaliacaoProdutos extends Migration
 {
     /**
      * Run the migrations.
@@ -18,7 +18,7 @@ class CreateAvaliacaoProdutosTable extends Migration
             $table->integer('produto_id')->unsigned();
             $table->foreign('produto_id')->references('id')->on('produtos');
             $table->smallInteger('nota');
-            $table->text('comentario');
+            $table->text('comentario');   
             $table->timestamps();
         });
     }
